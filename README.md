@@ -79,6 +79,13 @@ on test de changer l'image manuellement et dans l'observation on remarque qu'ell
 
 ![alt text](image-12.png)
 
+Pour le revert on a fait une autre pr pour ajouter les info du read me ce qui bloque le revert 
+![alt text](image-13.png)
+
+afin de faire le revert on a donc fais une branche dans laquelle on a changer l'image et qu'on merge dans la main 
+
+
+
 Push ou Pull ?
 Argo CD fonctionne en mode Pull. C'est lui qui interroge le dépôt Git toutes les 60 secondes pour vérifier s'il y a des changements. Personne ne "pousse" vers le cluster — c'est Argo CD qui tire l'état depuis Git et l'applique.
 
@@ -89,3 +96,4 @@ Lors de la dérive, c'est Argo CD qui a corrigé automatiquement les modificatio
 Pourquoi git revert ?
 
 Parce que dans une approche GitOps, le dépôt Git est la seule source de vérité. On ne fait jamais de modification directement sur le cluster. Pour revenir en arrière (ex: de 2.0.0 à 1.0.0), on ne fait pas kubectl set image — on fait un revert de la PR sur GitHub, ce qui recrée l'ancien état dans Git. Argo CD détecte le changement et redéploie automatiquement. Tout passe par Git = traçabilité complète, audit, historique, et review par PR.
+
