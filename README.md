@@ -38,4 +38,8 @@ Il peut être relancé sans risque.
 ## Équipe
 
 <!-- Noms du binôme -->
-- À compléter
+- Dubois Thomas
+- Jennifer Vernet
+
+ruleset creer sur main
+![alt text](image.png)
