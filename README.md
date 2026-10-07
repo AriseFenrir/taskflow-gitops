@@ -64,3 +64,6 @@ on lance le script d'observation pour vérifier la répartition du trafic
 
 Création de la première Pull Request pour déployer la nouvelle version de TaskFlow.
 ![alt text](image-7.png)
+
+on a appliquer la pr et l'application est synchronisée dans Argo CD.(pr applique a 11h52) au bout de 1 minute environ car dans le screen le changment a eu lieu a 11h53
+![alt text](image-8.png)
