@@ -152,5 +152,40 @@ On met à jour le fichier `apps/taskflow/rollout.yaml` pour changer l'image de l
 ![alt text](image-2.png)
 
 Une fois merge on peut abserver le rollout sur Argo CD et vérifier que la nouvelle version 1.1.0 est bien déployée.
+![alt text](image-3.png)
+on peut voir les 4 pod en version 1.1.0.
 
-ainsi que le script observe
+Il y a donc 8 pod au total 4 en version 1.0.0 et 4 en version 1.1.0.
+
+on regarde egalement le script observe dans lequel il reste afficher la version 1.0.0 car cela reste la version en prod 
+![alt text](image-4.png)
+
+### Etape 3
+
+On lance la promotion :
+![alt text](image-5.png)
+
+et on observe que les pod 1.0.0 ne sont plus utiliser et que les pod actif sont desormais ceux en 1.1.0
+![alt text](image-6.png)
+
+et dans le script observe.sh on voit la version 1.1.0 
+![alt text](image-7.png)
+
+et apres 30s on peut voir que les pods de l'ancienne version 1.0.0 ont été supprimés et que seuls les pods en version 1.1.0 sont actifs.
+![alt text](image-8.png)
+
+### Partie B : Canary Deployment
+
+### Etape 1
+
+On commence par recuperer les fichier canary dans le dépôt Git. quon va merge dans la main avant de faire la partie 1.1.0
+
+
+
+Une fois merge on va verifie sur argo CD que les changements ont bien été pris en compte.
+
+
+Rollout taskflow créé avec stratégie Canary, 4 pods en revision:1
+Status : Healthy, image 1.0.0 marquée stable, active
+2 Services créés : taskflow (production) et taskflow-canary
+observe.sh : 40/40 requêtes → version=1.0.0 http=200*
