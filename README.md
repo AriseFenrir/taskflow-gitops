@@ -222,3 +222,12 @@ et enfin a 100% soit 4 pods sur 4 en version 2.0.0.
 
 et sur observe .sh on remarque que toutes les requêtes sont maintenant en version 2.0.0.
 ![alt text](image-19.png)
+
+### Etape 3
+
+On va maintenant passez en version 2.1.0. afin de faire l'observation des code http.
+
+![alt text](image-20.png)
+
+On va alors pouvoir observer les pods en version 2.1.0 et les codes HTTP associés.
+
