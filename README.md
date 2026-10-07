@@ -67,3 +67,11 @@ Création de la première Pull Request pour déployer la nouvelle version de Tas
 
 on a appliquer la pr et l'application est synchronisée dans Argo CD.(pr applique a 11h52) au bout de 1 minute environ car dans le screen le changment a eu lieu a 11h53
 ![alt text](image-8.png)
+
+on a mis le nombre de replicas a 1
+![alt text](image-10.png)
+
+mais on remaque que tout de suite argo cd repasse a 4 replicas, car il aligne l'état du cluster sur l'état voulu défini dans Git.
+![alt text](image-9.png)
+
+on test de changer l'image manuellement et dans l'observation on remarque qu'elle repasse tout de suite a 2.0.0
