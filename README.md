@@ -231,3 +231,35 @@ On va maintenant passez en version 2.1.0. afin de faire l'observation des code h
 
 On va alors pouvoir observer les pods en version 2.1.0 et les codes HTTP associés.
 
+![alt text](image-21.png)
+
+et avec observe.sh on peut voir la version 2.1.0 et les codes HTTP associés on des erreur 500. (les 200 de 2.1.0 baisse et les erreur 500 augmentent)
+![alt text](image-22.png)
+
+On remarque alors que la nouvelle version 2.1.0 provoque des erreurs 500, ce qui indique un problème avec cette version.
+
+On va lancer un abort du rollout pour revenir à la version stable précédente.
+![alt text](image-23.png)
+
+et on peut abserver que le pod 2.1.0 a ete kill et que le pod a ete recreer en version 2.0.0
+![alt text](image-24.png)
+
+et dans observe.sh on ne pert plus de requete
+![alt text](image-25.png)
+
+## Blue-Green ou Canary pour TaskFlow ? 
+
+Pour TaskFlow, la stratégie **Canary** est la plus adaptée, pour deux raisons principales :
+
+### Coût
+- En Blue-Green, le déploiement nécessite **8 pods** (le double de la production) pendant toute la phase de validation. Cela double temporairement la consommation de ressources (CPU, mémoire).
+- En Canary, le nombre de pods reste **constant à 4**. À 25%, un pod de l'ancienne version est remplacé par un pod de la nouvelle. Il n'y a aucun surcoût en ressources.
+- Pour une application comme TaskFlow qui tourne avec 4 réplicas, le Canary est nettement plus économique.
+
+### Risque
+- En Blue-Green, aucun utilisateur ne voit la nouvelle version avant la promotion. C'est plus sûr **en théorie**, mais si un bug passe les tests sur le service preview, il touche **100% des utilisateurs d'un coup** à la promotion.
+- En Canary, on expose d'abord **25% du trafic réel**. Comme on l'a vu avec la version 2.1.0, les erreurs 500 ont été détectées immédiatement grâce à `observe.sh`. L'abort a permis de revenir à la version stable avant que la majorité des utilisateurs soient impactés.
+- Le Canary offre donc une **détection en conditions réelles** avec un **blast radius limité**.
+
+### Conclusion
+Le Canary est le meilleur compromis pour TaskFlow : il ne coûte rien de plus en ressources et permet de détecter les problèmes en production réelle tout en limitant l'impact sur les utilisateurs. Le Blue-Green reste pertinent pour des applications critiques où **aucun** utilisateur ne doit être exposé à une version non validée (ex: paiement, données sensibles).
