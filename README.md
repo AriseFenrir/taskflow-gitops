@@ -62,5 +62,5 @@ On vérifie que l'application est bien synchronisée dans Argo CD (sync status e
 on lance le script d'observation pour vérifier la répartition du trafic
 ![alt text](image-6.png)
 
-
-
+Création de la première Pull Request pour déployer la nouvelle version de TaskFlow.
+![alt text](image-7.png)
