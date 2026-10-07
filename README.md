@@ -192,3 +192,9 @@ Status : Healthy, image 1.1.0 marquée stable, active
 ![alt text](image-11.png)
 
 observe.sh : 40/40 requêtes → version=1.1.0 http=200
+
+### Etape 2
+
+On met à jour le fichier `apps/taskflow/rollout.yaml` pour changer l'image de la version 1.1.0 à 2.0.0, puis on commit et push les changements vers le dépôt Git.
+
+![alt text](image-12.png)
