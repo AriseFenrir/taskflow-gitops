@@ -178,7 +178,7 @@ et apres 30s on peut voir que les pods de l'ancienne version 1.0.0 ont été sup
 
 ### Etape 1
 
-On commence par recuperer les fichier canary dans le dépôt Git. quon va merge dans la main avant de faire la partie 1.1.0
+On commence par recuperer les fichier canary dans le dépôt Git. quon va merge dans la main 
 
 
 
