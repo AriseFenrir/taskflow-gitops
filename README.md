@@ -94,16 +94,31 @@ a 12h22 on a merge la PR pour le revert et l'application est revenue à l'état 
 et a 12h24 on remarque qu'on est bien repasser en 1.0.0
 ![alt text](image-16.png)
 
+## Bonus : suppression de service.yaml (Pruning)
 
+Avant la suppression, le Service `taskflow` est bien présent dans l'arborescence d'Argo CD :
+![alt text](image-18.png)
 
-Push ou Pull ?
+1. Création de la branche `feat/bonus-prune-service` et suppression du fichier `apps/taskflow/service.yaml`.
+2. Ouverture et fusion de la Pull Request #8 sur `main`.
+3. Grâce à `prune: true` dans `argocd/application.yaml`, Argo CD a automatiquement supprimé (pruné) la ressource `Service` du cluster :
+![alt text](image-19.png)
+
+Vérification via le terminal :
+```bash
+$ kubectl get svc -n taskflow
+No resources found in taskflow namespace.
+```
+
+## Questions du livrable
+
+**Push ou Pull ?**
 Argo CD fonctionne en mode Pull. C'est lui qui interroge le dépôt Git toutes les 60 secondes pour vérifier s'il y a des changements. Personne ne "pousse" vers le cluster — c'est Argo CD qui tire l'état depuis Git et l'applique.
 
-Qui a corrigé quoi ?
+**Qui a corrigé quoi ?**
+Lors de la dérive, c'est Argo CD qui a corrigé automatiquement les modifications manuelles (kubectl scale, kubectl set image). Grâce à `selfHeal: true`, il a détecté que l'état du cluster ne correspondait plus à l'état décrit dans Git, et il a resynchronisé le cluster sur le dépôt Git (source de vérité).
 
-Lors de la dérive, c'est Argo CD qui a corrigé automatiquement les modifications manuelles (kubectl scale, kubectl set image). Grâce à selfHeal: true, il a détecté que l'état du cluster ne correspondait plus à l'état décrit dans Git, et il a resynchronisé le cluster sur le dépôt Git (source de vérité).
+**Pourquoi git revert ?**
+Parce que dans une approche GitOps, le dépôt Git est la seule source de vérité. On ne fait jamais de modification directement sur le cluster. Pour revenir en arrière (ex: de 2.0.0 à 1.0.0), on ne fait pas `kubectl set image` — on fait un revert de la PR sur GitHub, ce qui recrée l'ancien état dans Git. Argo CD détecte le changement et redéploie automatiquement. Tout passe par Git = traçabilité complète, audit, historique, et review par PR.
 
-Pourquoi git revert ?
-
-Parce que dans une approche GitOps, le dépôt Git est la seule source de vérité. On ne fait jamais de modification directement sur le cluster. Pour revenir en arrière (ex: de 2.0.0 à 1.0.0), on ne fait pas kubectl set image — on fait un revert de la PR sur GitHub, ce qui recrée l'ancien état dans Git. Argo CD détecte le changement et redéploie automatiquement. Tout passe par Git = traçabilité complète, audit, historique, et review par PR.
 
