@@ -56,6 +56,8 @@ lancement du script d'installation
 on apply le manifeste Argo CD
 ![alt text](image-4.png)
 
+![alt text](image-17.png)
+
 On vérifie que l'application est bien synchronisée dans Argo CD (sync status et health status).
 ![alt text](image-5.png)
 
@@ -83,6 +85,14 @@ Pour le revert on a fait une autre pr pour ajouter les info du read me ce qui bl
 ![alt text](image-13.png)
 
 afin de faire le revert on a donc fais une branche dans laquelle on a changer l'image et qu'on merge dans la main 
+
+pr pour le revert
+![alt text](image-14.png)
+
+a 12h22 on a merge la PR pour le revert et l'application est revenue à l'état précédent.
+![alt text](image-15.png)
+et a 12h24 on remarque qu'on est bien repasser en 1.0.0
+![alt text](image-16.png)
 
 
 
