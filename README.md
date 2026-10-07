@@ -198,3 +198,27 @@ observe.sh : 40/40 requêtes → version=1.1.0 http=200
 On met à jour le fichier `apps/taskflow/rollout.yaml` pour changer l'image de la version 1.1.0 à 2.0.0, puis on commit et push les changements vers le dépôt Git.
 
 ![alt text](image-12.png)
+
+On peut alors observer que le rollout a commencer et que la nouvelle version est progressivement déployée.
+
+il commence a 25% soit 1 pod sur 4 en version 2.0.0.
+![alt text](image-13.png)
+
+et sur observe.sh on remarque environ 25% des requete en version 2.0.0
+![alt text](image-14.png)
+
+on va ensuite passer à 50% soit 2 pods sur 4 en version 2.0.0.
+![alt text](image-15.png)
+
+![alt text](image-16.png)
+
+on passe ensuite a 75% soit 3 pods sur 4 en version 2.0.0.
+
+![alt text](image-17.png)
+
+et enfin a 100% soit 4 pods sur 4 en version 2.0.0.
+
+![alt text](image-18.png)
+
+et sur observe .sh on remarque que toutes les requêtes sont maintenant en version 2.0.0.
+![alt text](image-19.png)
