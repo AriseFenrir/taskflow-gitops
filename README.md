@@ -149,3 +149,8 @@ observe.sh : 40/40 requêtes → version=1.0.0 http=200*
 Maintenant, on peut passer à la mise à jour de l'image vers la version 1.1.0 et observer le comportement du déploiement BlueGreen.
 
 On met à jour le fichier `apps/taskflow/rollout.yaml` pour changer l'image de la version 1.0.0 à 1.1.0, puis on commit et push les changements vers le dépôt Git.
+![alt text](image-2.png)
+
+Une fois merge on peut abserver le rollout sur Argo CD et vérifier que la nouvelle version 1.1.0 est bien déployée.
+
+ainsi que le script observe
