@@ -227,5 +227,7 @@ et sur observe .sh on remarque que toutes les requêtes sont maintenant en versi
 
 On va maintenant passez en version 2.1.0. afin de faire l'observation des code http.
 
+![alt text](image-20.png)
 
+On va alors pouvoir observer les pods en version 2.1.0 et les codes HTTP associés.
 
