@@ -129,3 +129,9 @@ Lors de la dérive, c'est Argo CD qui a corrigé automatiquement les modificatio
 Parce que dans une approche GitOps, le dépôt Git est la seule source de vérité. On ne fait jamais de modification directement sur le cluster. Pour revenir en arrière (ex: de 2.0.0 à 1.0.0), on ne fait pas `kubectl set image` — on fait un revert de la PR sur GitHub, ce qui recrée l'ancien état dans Git. Argo CD détecte le changement et redéploie automatiquement. Tout passe par Git = traçabilité complète, audit, historique, et review par PR.
 
 ## LAB APRÈS-MIDI
+
+### Partie A : Blue Green Deployment
+
+### Etape 1
+
+On commence par recuperer les fichier bluegreen dans le dépôt Git. quon va merge dans la main avant de faire la partie 1.1.0
