@@ -43,3 +43,9 @@ Il peut être relancé sans risque.
 
 ruleset creer sur main
 ![alt text](image.png)
+
+On ne peux pas push :
+![alt text](image-1.png)
+
+ajout du pseudo dans application.yaml
+![alt text](image-2.png)
