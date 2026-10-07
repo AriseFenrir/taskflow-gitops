@@ -79,6 +79,11 @@ on test de changer l'image manuellement et dans l'observation on remarque qu'ell
 
 ![alt text](image-12.png)
 
+Push ou Pull ?
+Argo CD fonctionne en mode Pull. C'est lui qui interroge le dépôt Git toutes les 60 secondes pour vérifier s'il y a des changements. Personne ne "pousse" vers le cluster — c'est Argo CD qui tire l'état depuis Git et l'applique.
+
+Qui a corrigé quoi ?
+
 Lors de la dérive, c'est Argo CD qui a corrigé automatiquement les modifications manuelles (kubectl scale, kubectl set image). Grâce à selfHeal: true, il a détecté que l'état du cluster ne correspondait plus à l'état décrit dans Git, et il a resynchronisé le cluster sur le dépôt Git (source de vérité).
 
 Pourquoi git revert ?
