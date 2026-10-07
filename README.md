@@ -49,3 +49,18 @@ On ne peux pas push :
 
 ajout du pseudo dans application.yaml
 ![alt text](image-2.png)
+
+lancement du script d'installation
+![alt text](image-3.png)
+
+on apply le manifeste Argo CD
+![alt text](image-4.png)
+
+On vérifie que l'application est bien synchronisée dans Argo CD (sync status et health status).
+![alt text](image-5.png)
+
+on lance le script d'observation pour vérifier la répartition du trafic
+![alt text](image-6.png)
+
+
+
