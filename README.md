@@ -184,8 +184,11 @@ On commence par recuperer les fichier canary dans le dépôt Git. quon va merge 
 
 Une fois merge on va verifie sur argo CD que les changements ont bien été pris en compte.
 
+![alt text](image-10.png)
 
 Rollout taskflow créé avec stratégie Canary, 4 pods en revision:1
-Status : Healthy, image 1.0.0 marquée stable, active
-2 Services créés : taskflow (production) et taskflow-canary
-observe.sh : 40/40 requêtes → version=1.0.0 http=200*
+Status : Healthy, image 1.1.0 marquée stable, active
+
+![alt text](image-11.png)
+
+observe.sh : 40/40 requêtes → version=1.1.0 http=200
