@@ -75,3 +75,12 @@ mais on remaque que tout de suite argo cd repasse a 4 replicas, car il aligne l'
 ![alt text](image-9.png)
 
 on test de changer l'image manuellement et dans l'observation on remarque qu'elle repasse tout de suite a 2.0.0
+![alt text](image-11.png)
+
+![alt text](image-12.png)
+
+Lors de la dérive, c'est Argo CD qui a corrigé automatiquement les modifications manuelles (kubectl scale, kubectl set image). Grâce à selfHeal: true, il a détecté que l'état du cluster ne correspondait plus à l'état décrit dans Git, et il a resynchronisé le cluster sur le dépôt Git (source de vérité).
+
+Pourquoi git revert ?
+
+Parce que dans une approche GitOps, le dépôt Git est la seule source de vérité. On ne fait jamais de modification directement sur le cluster. Pour revenir en arrière (ex: de 2.0.0 à 1.0.0), on ne fait pas kubectl set image — on fait un revert de la PR sur GitHub, ce qui recrée l'ancien état dans Git. Argo CD détecte le changement et redéploie automatiquement. Tout passe par Git = traçabilité complète, audit, historique, et review par PR.
