@@ -42,67 +42,67 @@ Il peut être relancé sans risque.
 - Jennifer Vernet
 
 ruleset creer sur main
-![alt text](image.png)
+![alt text](images/image.png)
 
 On ne peux pas push :
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 ajout du pseudo dans application.yaml
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 
 lancement du script d'installation
-![alt text](image-3.png)
+![alt text](images/image-3.png)
 
 on apply le manifeste Argo CD
-![alt text](image-4.png)
+![alt text](images/image-4.png)
 
-![alt text](image-17.png)
+![alt text](images/image-17.png)
 
 On vérifie que l'application est bien synchronisée dans Argo CD (sync status et health status).
-![alt text](image-5.png)
+![alt text](images/image-5.png)
 
 on lance le script d'observation pour vérifier la répartition du trafic
-![alt text](image-6.png)
+![alt text](images/image-6.png)
 
 Création de la première Pull Request pour déployer la nouvelle version de TaskFlow.
-![alt text](image-7.png)
+![alt text](images/image-7.png)
 
 on a appliquer la pr et l'application est synchronisée dans Argo CD.(pr applique a 11h52) au bout de 1 minute environ car dans le screen le changment a eu lieu a 11h53
-![alt text](image-8.png)
+![alt text](images/image-8.png)
 
 on a mis le nombre de replicas a 1
-![alt text](image-10.png)
+![alt text](images/image-10.png)
 
 mais on remaque que tout de suite argo cd repasse a 4 replicas, car il aligne l'état du cluster sur l'état voulu défini dans Git.
-![alt text](image-9.png)
+![alt text](images/image-9.png)
 
 on test de changer l'image manuellement et dans l'observation on remarque qu'elle repasse tout de suite a 2.0.0
-![alt text](image-11.png)
+![alt text](images/image-11.png)
 
-![alt text](image-12.png)
+![alt text](images/image-12.png)
 
 Pour le revert on a fait une autre pr pour ajouter les info du read me ce qui bloque le revert 
-![alt text](image-13.png)
+![alt text](images/image-13.png)
 
 afin de faire le revert on a donc fais une branche dans laquelle on a changer l'image et qu'on merge dans la main 
 
 pr pour le revert
-![alt text](image-14.png)
+![alt text](images/image-14.png)
 
 a 12h22 on a merge la PR pour le revert et l'application est revenue à l'état précédent.
-![alt text](image-15.png)
+![alt text](images/image-15.png)
 et a 12h24 on remarque qu'on est bien repasser en 1.0.0
-![alt text](image-16.png)
+![alt text](images/image-16.png)
 
 ## Bonus : suppression de service.yaml (Pruning)
 
 Avant la suppression, le Service `taskflow` est bien présent dans l'arborescence d'Argo CD :
-![alt text](image-18.png)
+![alt text](images/image-18.png)
 
 1. Création de la branche `feat/bonus-prune-service` et suppression du fichier `apps/taskflow/service.yaml`.
 2. Ouverture et fusion de la Pull Request #8 sur `main`.
 3. Grâce à `prune: true` dans `argocd/application.yaml`, Argo CD a automatiquement supprimé (pruné) la ressource `Service` du cluster :
-![alt text](image-19.png)
+![alt text](images/image-19.png)
 
 Vérification via le terminal :
 ```bash
