@@ -135,3 +135,7 @@ Parce que dans une approche GitOps, le dépôt Git est la seule source de vérit
 ### Etape 1
 
 On commence par recuperer les fichier bluegreen dans le dépôt Git. quon va merge dans la main avant de faire la partie 1.1.0
+
+![alt text](image.png)
+
+Une fois merge on va verifie sur argo CD que les changements ont bien été pris en compte.
