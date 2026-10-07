@@ -102,7 +102,7 @@ Avant la suppression, le Service `taskflow` est bien présent dans l'arborescenc
 1. Création de la branche `feat/bonus-prune-service` et suppression du fichier `apps/taskflow/service.yaml`.
 2. Ouverture et fusion de la Pull Request #8 sur `main`.
 3. Grâce à `prune: true` dans `argocd/application.yaml`, Argo CD a automatiquement supprimé (pruné) la ressource `Service` du cluster :
-![alt text](images/image-19.png)
+![alt text](images/image-19-clean.png)
 
 Vérification via le terminal :
 ```bash
