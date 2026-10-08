@@ -4,8 +4,11 @@
 
 ### Etape 1 : Sync du fork et baseline
 
-<!-- Sync du fork avec upstream pour récupérer exemples/robustesse/ et scripts/charge.sh -->
-<!-- Production confirmée en 2.0.0 -->
+On fait la pr pour sync avec le fork 
+![alt text](image.png)
+
+On confirme que le nouveau setup est mis en place sur le cluster
+![alt text](image-1.png)
 
 ### Etape 2 : Test de charge baseline (étalon)
 
