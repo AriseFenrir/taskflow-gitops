@@ -120,42 +120,42 @@ Voir [postmortem-2.1.0.md](postmortem-2.1.0.md)
 
 On commence par lancer le conftest:
 
-![alt text](image.png)
+![alt text](../images-j3/pssi-image.png)
 
 Actuellement tout les tests configurer passent.
 
 ### Etape 2
 
 Ecriture de R3 :
-![alt text](image-1.png)
+![alt text](../images-j3/pssi-image-1.png)
 
 Ecriture de R4 :
 
-![alt text](image-2.png)
+![alt text](../images-j3/pssi-image-2.png)
 
 Après relance de conftest, **R4 échoue** car le rollout n'a pas de `securityContext.runAsNonRoot`.
 
-![alt text](image-3.png)
+![alt text](../images-j3/pssi-image-3.png)
 
 ### Etape 3
 
 On ajoute `securityContext: runAsNonRoot: true` dans `apps/taskflow/rollout.yaml` au niveau du pod.
-![alt text](image-4.png)
+![alt text](../images-j3/pssi-image-4.png)
 
 Puis on relance le conftest : toutes les règles R1 à R4 passent et on voit que les 25 test passent.
 
-![alt text](image-5.png)
+![alt text](../images-j3/pssi-image-5.png)
 
 ### Etape 4
 
 On copie le workflow GitHub Actions :
-![alt text](image-6.png)
+![alt text](../images-j3/pssi-image-6.png)
 
 on fait ensuite la pr qu'on merge dans main
-![alt text](image-8.png)
+![alt text](../images-j3/pssi-image-8.png)
 
 On peut ensuite voir que la CI se lance bien et que le job conftest pass mais pas trivy comme attendu
-![alt text](image-7.png)
+![alt text](../images-j3/pssi-image-7.png)
 
 ### Etape 5
 
@@ -163,7 +163,7 @@ Dans la ruleset GitHub, on ajoute les deux status checks obligatoires :
 - **PSSI manifests (conftest)**
 - **PSSI images (Trivy)**
 
-![alt text](image-9.png)
+![alt text](../images-j3/pssi-image-9.png)
 
 ### Etape 6
 
@@ -173,7 +173,7 @@ Les checks échouent :
 - R1 : tag `latest` interdit
 - R2 : image `nginx` hors du registre autorisé
 
-![alt text](image-10.png)
+![alt text](../images-j3/pssi-image-10.png)
 
 ### Etape 7
 
@@ -183,10 +183,10 @@ Sauf que comme vu avant le job Trivy peut encore échouer si des vulnérabilité
 
 Comme demander dans le R5 on a date et mis la limite des exception de toute les cve qui sont en high et critical (pour les voir on peux regarder les pipelines Trivy que on a lancer précédemment)
 
-![alt text](image-11.png)
+![alt text](../images-j3/pssi-image-11.png)
 
 Apres l'ajout de trivyignore, on peux voir que le job Trivy ne bloque plus la CI malgré la présence de vulnérabilités HIGH/CRITICAL dans l'image.
-![alt text](image-12.png)
+![alt text](../images-j3/pssi-image-12.png)
 
 ### Tableau récapitulatif : Règle → Contrôle → Outil → Preuve
 
