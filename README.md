@@ -47,5 +47,4 @@ Il peut être relancé sans risque.
 | Jour | Contenu | Lien |
 | --- | --- | --- |
 | **J2** | GitOps (Argo CD, self-heal, revert), Blue-Green, Canary manuel | [docs/journal-j2.md](docs/journal-j2.md) |
-| **J3 matin** | Robustesse (analyse automatique k6, incident 2.1.0, postmortem) | [docs/journal-j3.md](docs/journal-j3.md) |
-| **J3 après-midi** | Mini-PSSI, quality gates (conftest, Trivy, checks CI obligatoires) | [docs/journal-j3.md](docs/journal-j3.md#partie-c--la-mini-pssi-en-quality-gates) |
+| **J3** | Robustesse (analyse automatique k6, incident 2.1.0, postmortem) |  Mini-PSSI, quality gates (conftest, Trivy, checks CI obligatoires) | [docs/journal-j3.md](docs/journal-j3.md) |
