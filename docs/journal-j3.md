@@ -53,27 +53,30 @@ on fait la pr pour déployer l'image 2.1.0
 
 ![alt text](image-4.png)
 
+le test avec k6 se lance a 25%
+![alt text](image-7.png)
 
+et on remarque apres le message d'erreur
+![alt text](image-8.png)
 
 ### Etape 2 : Preuves de l'échec automatique
 
-<!-- 
-Preuve 1 : AnalysisRun en échec
-  kubectl get analysisrun -n taskflow
-  kubectl describe analysisrun <nom> -n taskflow
+on peut check le fait que l'analysis run a bine echouer (ici c'est celle de 11m a prendre en compte)
+![alt text](image-9.png)
 
-Preuve 2 : Logs du Job k6
-  kubectl logs -n taskflow -l job-name=<nom-du-job>
+on peut observer les log du job k6 dans lequel l'échec s'est produit.
+![alt text](image-10.png)
 
-Preuve 3 : Statut du rollout (Degraded)
-  kubectl argo rollouts get rollout taskflow -n taskflow
+on peut egalemnt check les log du analysis run 
+![alt text](image-11.png)
 
-Preuve 4 : observe.sh — la prod est restée en 2.0.0
--->
+Enfin on peut observer le statut du rollout qui est passé en Degraded.
+![alt text](image-12.png)
 
 ### Etape 3 : Revert de la PR 2.1.0
 
-<!-- Revert via PR sur GitHub ou branche manuelle -->
+On fait la PR pour revert la version 2.1.0 et revenir à la version précédente.
+![alt text](image-13.png)
 
 ### Etape 4 : Déploiement de la 2.2.0 (image corrigée)
 
