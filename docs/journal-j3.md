@@ -27,14 +27,6 @@ les fichier ont tous été mis en place au moment ou on a sync ce qui fait que l
 
 ### Etape 4 : Vérification des ressources
 
-<!-- Résultats de :
-  kubectl get rollout -n taskflow
-  kubectl get deployment -n taskflow (aucun)
-  kubectl get analysistemplate -n taskflow
-  kubectl get configmap k6-robustesse -n taskflow
-  kubectl get svc -n taskflow
--->
-
 On verifie que toute les ressources sont pretes et configuré
 ![alt text](image-3.png)
 
