@@ -53,11 +53,7 @@ on fait la pr pour déployer l'image 2.1.0
 
 ![alt text](image-4.png)
 
-on observe que les pod demarre (50%)
-![alt text](image-5.png)
 
-Au bout de quelque minute on arrive à 100% de déploiement.
-![alt text](image-6.png)
 
 ### Etape 2 : Preuves de l'échec automatique
 
