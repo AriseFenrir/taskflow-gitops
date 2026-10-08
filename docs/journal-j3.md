@@ -124,7 +124,7 @@ On commence par lancer le conftest:
 
 Actuellement tout les tests configurer passent.
 
-### Etape 2 : Écriture des règles R3 et R4
+### Etape 2
 
 Ecriture de R3 :
 ![alt text](image-1.png)
@@ -135,14 +135,14 @@ Ecriture de R4 :
 
 Après relance de conftest, **R4 échoue** car le rollout n'a pas de `securityContext.runAsNonRoot`.
 
-<!-- Capture de l'échec R4 -->
-<!-- ![alt text](../images-j3/image-XX.png) -->
+![alt text](image-3.png)
 
-### Etape 3 : Correction du rollout pour R4
+### Etape 3
 
 On ajoute `securityContext: runAsNonRoot: true` dans `apps/taskflow/rollout.yaml` au niveau du pod.
+![alt text](image-4.png)
 
-Relance de conftest : toutes les règles R1 à R4 passent.
+Puis on relance le conftest : toutes les règles R1 à R4 passent.
 
 <!-- Capture de conftest OK -->
 <!-- ![alt text](../images-j3/image-XX.png) -->
