@@ -1,4 +1,4 @@
-# Journal Jour 3 — Robustesse et analyse automatique
+# Journal Jour 3 — Robustesse, analyse automatique et PSSI
 
 ## Partie A : L'étalon et l'analyse
 
@@ -111,3 +111,83 @@ Voir [postmortem-2.1.0.md](postmortem-2.1.0.md)
 | **Temps de réaction** | Dépend de la vigilance de l'opérateur | ~30 secondes (durée du test k6) |
 | **Intervention humaine** | Obligatoire | Aucune |
 | **Risque d'oubli** | Élevé (nuit, week-end, distraction) | Nul |
+
+---
+
+## Partie C : La mini-PSSI en quality gates
+
+### Etape 1 
+
+On commence par lancer le conftest:
+
+![alt text](image.png)
+
+Actuellement tout les tests configurer passent.
+
+### Etape 2 : Écriture des règles R3 et R4
+
+On implémente les deux règles manquantes dans `policies/kubernetes.rego` :
+
+- **R3** : chaque conteneur doit avoir `resources.limits.memory`
+- **R4** : les pods doivent déclarer `runAsNonRoot: true`
+
+Après relance de conftest, **R4 échoue** car le rollout n'a pas de `securityContext.runAsNonRoot`.
+
+<!-- Capture de l'échec R4 -->
+<!-- ![alt text](../images-j3/image-XX.png) -->
+
+### Etape 3 : Correction du rollout pour R4
+
+On ajoute `securityContext: runAsNonRoot: true` dans `apps/taskflow/rollout.yaml` au niveau du pod.
+
+Relance de conftest : toutes les règles R1 à R4 passent.
+
+<!-- Capture de conftest OK -->
+<!-- ![alt text](../images-j3/image-XX.png) -->
+
+### Etape 4 : Mise en place du workflow CI
+
+On copie le workflow GitHub Actions :
+```bash
+cp exemples/ci/pssi-github.yml .github/workflows/pssi.yml
+```
+
+PR `feat/pssi-quality-gates` avec les 3 fichiers modifiés (rego, rollout, workflow), merge dans main.
+
+<!-- Capture de la PR et des checks CI -->
+<!-- ![alt text](../images-j3/image-XX.png) -->
+
+### Etape 5 : Ruleset — checks obligatoires
+
+Dans GitHub → Settings → Rules, on ajoute les deux status checks obligatoires :
+- **PSSI manifests (conftest)**
+- **PSSI images (Trivy)**
+
+<!-- Capture de la ruleset -->
+<!-- ![alt text](../images-j3/image-XX.png) -->
+
+### Etape 6 : PR non conforme (test du blocage)
+
+On crée une PR avec une image non conforme (`nginx:latest`) pour vérifier que les quality gates bloquent bien le merge.
+
+Les checks échouent :
+- R1 : tag `latest` interdit
+- R2 : image `nginx` hors du registre autorisé
+
+<!-- Capture de la PR bloquée -->
+<!-- ![alt text](../images-j3/image-XX.png) -->
+
+### Etape 7 : Trivy — gestion des vulnérabilités
+
+<!-- Si Trivy échoue : capture + correction ou exception dans .trivyignore -->
+<!-- ![alt text](../images-j3/image-XX.png) -->
+
+### Tableau récapitulatif : Règle → Contrôle → Outil → Preuve
+
+| Règle | Exigence | Outil | Résultat |
+| --- | --- | --- | --- |
+| **PSSI-R1** | Tag explicite, jamais `latest` | conftest | PR `nginx:latest` bloquée |
+| **PSSI-R2** | Registre `ghcr.io/9m7fjfpv9k-cyber/` uniquement | conftest | PR `nginx` bloquée |
+| **PSSI-R3** | Limite de mémoire sur chaque conteneur | conftest | Validé (256Mi configuré) |
+| **PSSI-R4** | `runAsNonRoot: true` sur les pods | conftest | Corrigé dans le rollout |
+| **PSSI-R5** | Aucune CVE HIGH/CRITICAL corrigeable | Trivy | Scanné en CI |
