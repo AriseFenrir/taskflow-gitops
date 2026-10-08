@@ -23,12 +23,7 @@ p95 = 10.35ms (seuil < 250ms)
 
 ### Etape 3 : PR feat/analyse-auto
 
-<!-- Copie des 4 fichiers de exemples/robustesse/ dans apps/taskflow/ :
-  - rollout.yaml (canary avec analyse k6 automatique)
-  - analysis-template.yaml
-  - configmap-k6.yaml
-  - service-canary.yaml
--->
+les fichier ont tous été mis en place au moment ou on a sync ce qui fait que la PR n'a pas nécessité de modifications supplémentaires.
 
 ### Etape 4 : Vérification des ressources
 
@@ -39,6 +34,9 @@ p95 = 10.35ms (seuil < 250ms)
   kubectl get configmap k6-robustesse -n taskflow
   kubectl get svc -n taskflow
 -->
+
+On verifie que toute les ressources sont pretes et configuré
+![alt text](image-3.png)
 
 ---
 
