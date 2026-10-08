@@ -5,16 +5,16 @@
 ### Etape 1 : Sync du fork et baseline
 
 On fait la pr pour sync avec le fork 
-![alt text](image.png)
+![alt text](../images-j3/image.png)
 
 On confirme que le nouveau setup est mis en place sur le cluster
-![alt text](image-1.png)
+![alt text](../images-j3/image-1.png)
 
 ### Etape 2 : Test de charge baseline (étalon)
 
 On a lancer le script charge.sh pour effectuer le test de charge baseline.
 
-![alt text](image-2.png)
+![alt text](../images-j3/image-2.png)
 
 Dans le resultat on peut observer : 
 0.00% d'erreur, (seuil < 2%)
@@ -36,7 +36,7 @@ les fichier ont tous été mis en place au moment ou on a sync ce qui fait que l
 -->
 
 On verifie que toute les ressources sont pretes et configuré
-![alt text](image-3.png)
+![alt text](../images-j3/image-3.png)
 
 ---
 
@@ -51,32 +51,32 @@ On verifie que toute les ressources sont pretes et configuré
 
 on fait la pr pour déployer l'image 2.1.0
 
-![alt text](image-4.png)
+![alt text](../images-j3/image-4.png)
 
 le test avec k6 se lance a 25%
-![alt text](image-7.png)
+![alt text](../images-j3/image-7.png)
 
 et on remarque apres le message d'erreur
-![alt text](image-8.png)
+![alt text](../images-j3/image-8.png)
 
 ### Etape 2 : Preuves de l'échec automatique
 
 on peut check le fait que l'analysis run a bine echouer (ici c'est celle de 11m a prendre en compte)
-![alt text](image-9.png)
+![alt text](../images-j3/image-9.png)
 
 on peut observer les log du job k6 dans lequel l'échec s'est produit.
-![alt text](image-10.png)
+![alt text](../images-j3/image-10.png)
 
 on peut egalemnt check les log du analysis run 
-![alt text](image-11.png)
+![alt text](../images-j3/image-11.png)
 
 Enfin on peut observer le statut du rollout qui est passé en Degraded.
-![alt text](image-12.png)
+![alt text](../images-j3/image-12.png)
 
 ### Etape 3 : Revert de la PR 2.1.0
 
 On fait la PR pour revert la version 2.1.0 et revenir à la version précédente.
-![alt text](image-13.png)
+![alt text](../images-j3/image-13.png)
 
 ### Etape 4 : Déploiement de la 2.2.0 (image corrigée)
 
@@ -84,11 +84,17 @@ On fait la PR pour revert la version 2.1.0 et revenir à la version précédente
   kubectl argo rollouts get rollout taskflow -n taskflow --watch
   L'analyse k6 passe → canary continue : 25% → 50% → 75% → 100%
 -->
+on fait la pr pour déployer l'image 2.2.0
+![alt text](../images-j3/image-4.png)
 
-<!-- Capture de l'AnalysisRun en succès :
-  kubectl get analysisrun -n taskflow
-  kubectl describe analysisrun <nom> -n taskflow
--->
+le test avec k6 se lance a 25%
+![alt text](../images-j3/image-14.png)
+
+et on peut observer que le test a réussi et que le rollout continue.
+![alt text](../images-j3/image-15.png)
+
+le rollout fini avec succès.
+![alt text](../images-j3/image-16.png)
 
 ### Etape 5 : Postmortem
 
