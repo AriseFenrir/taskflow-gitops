@@ -152,8 +152,10 @@ On copie le workflow GitHub Actions :
 ![alt text](image-6.png)
 
 on fait ensuite la pr qu'on merge dans main
-![alt text](image-7.png)
+![alt text](image-8.png)
 
+On peut ensuite voir que la CI se lance bien et que le job conftest pass mais pas trivy comme attendu
+![alt text](image-7.png)
 
 ### Etape 5 : Ruleset — checks obligatoires
 
