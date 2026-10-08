@@ -126,10 +126,12 @@ Actuellement tout les tests configurer passent.
 
 ### Etape 2 : Écriture des règles R3 et R4
 
-On implémente les deux règles manquantes dans `policies/kubernetes.rego` :
+Ecriture de R3 :
+![alt text](image-1.png)
 
-- **R3** : chaque conteneur doit avoir `resources.limits.memory`
-- **R4** : les pods doivent déclarer `runAsNonRoot: true`
+Ecriture de R4 :
+
+![alt text](image-2.png)
 
 Après relance de conftest, **R4 échoue** car le rollout n'a pas de `securityContext.runAsNonRoot`.
 
