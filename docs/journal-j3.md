@@ -152,9 +152,8 @@ On copie le workflow GitHub Actions :
 ![alt text](image-6.png)
 
 on fait ensuite la pr qu'on merge dans main
+![alt text](image-7.png)
 
-<!-- Capture de la PR et des checks CI -->
-<!-- ![alt text](../images-j3/image-XX.png) -->
 
 ### Etape 5 : Ruleset — checks obligatoires
 
