@@ -142,22 +142,18 @@ Après relance de conftest, **R4 échoue** car le rollout n'a pas de `securityCo
 On ajoute `securityContext: runAsNonRoot: true` dans `apps/taskflow/rollout.yaml` au niveau du pod.
 ![alt text](image-4.png)
 
-Puis on relance le conftest : toutes les règles R1 à R4 passent.
+Puis on relance le conftest : toutes les règles R1 à R4 passent et on voit que les 25 test passent.
 
-<!-- Capture de conftest OK -->
-<!-- ![alt text](../images-j3/image-XX.png) -->
+![alt text](image-5.png)
 
 ### Etape 4 : Mise en place du workflow CI
 
 On copie le workflow GitHub Actions :
-```bash
-cp exemples/ci/pssi-github.yml .github/workflows/pssi.yml
-```
+![alt text](image-6.png)
 
-PR `feat/pssi-quality-gates` avec les 3 fichiers modifiés (rego, rollout, workflow), merge dans main.
+on fait ensuite la pr qu'on merge dans main
+![alt text](image-7.png)
 
-<!-- Capture de la PR et des checks CI -->
-<!-- ![alt text](../images-j3/image-XX.png) -->
 
 ### Etape 5 : Ruleset — checks obligatoires
 
