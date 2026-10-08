@@ -1,0 +1,29 @@
+# Exceptions PSSI-R5 — image taskflow maintenue par le formateur, pas de fix possible de notre côté.
+# Validées le : 2026-10-08, expire le : 2026-11-08
+
+# starlette 0.41.3 — DoS via Range header merging
+CVE-2025-62727
+
+# starlette 0.41.3 — SSRF et vol de credentials NTLM via UNC paths dans StaticFiles
+CVE-2026-48818
+
+# starlette 0.41.3 — request.form() limits silently ignored, DoS
+CVE-2026-54283
+
+# urllib3 1.26.20 — Unbounded decompression chain, resource exhaustion
+CVE-2025-66418
+
+# urllib3 1.26.20 — Streaming API improperly handles highly compressed data
+CVE-2025-66471
+
+# urllib3 1.26.20 — Decompression-bomb safeguard bypass on redirects
+CVE-2026-21441
+
+# urllib3 1.26.20 — Information disclosure via cross-origin redirects
+CVE-2026-44431
+
+# urllib3 1.26.20 — Traffic interception via HTTPS proxy TLS config override
+CVE-2026-97687
+
+# urllib3 1.26.20 — DoS via unbounded memory allocation in chunk parser
+CVE-2026-97689
