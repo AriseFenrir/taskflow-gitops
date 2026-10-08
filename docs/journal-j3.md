@@ -146,7 +146,7 @@ Puis on relance le conftest : toutes les règles R1 à R4 passent et on voit que
 
 ![alt text](image-5.png)
 
-### Etape 4 : Mise en place du workflow CI
+### Etape 4
 
 On copie le workflow GitHub Actions :
 ![alt text](image-6.png)
@@ -157,7 +157,7 @@ on fait ensuite la pr qu'on merge dans main
 On peut ensuite voir que la CI se lance bien et que le job conftest pass mais pas trivy comme attendu
 ![alt text](image-7.png)
 
-### Etape 5 : Ruleset — checks obligatoires
+### Etape 5
 
 Dans la ruleset GitHub, on ajoute les deux status checks obligatoires :
 - **PSSI manifests (conftest)**
@@ -165,7 +165,7 @@ Dans la ruleset GitHub, on ajoute les deux status checks obligatoires :
 
 ![alt text](image-9.png)
 
-### Etape 6 : PR non conforme (test du blocage)
+### Etape 6
 
 On crée une PR avec une image non conforme (`nginx:latest`) pour vérifier que les quality gates bloquent bien le merge.
 
@@ -175,7 +175,7 @@ Les checks échouent :
 
 ![alt text](image-10.png)
 
-### Etape 7 : Trivy — gestion des vulnérabilités
+### Etape 7
 
 On remet notre image conforme (`ghcr.io/9m7fjfpv9k-cyber/taskflow:2.2.0`) dans le déploiement.
 
@@ -185,6 +185,8 @@ Comme demander dans le R5 on a date et mis la limite des exception de toute les 
 
 ![alt text](image-11.png)
 
+Apres l'ajout de trivyignore, on peux voir que le job Trivy ne bloque plus la CI malgré la présence de vulnérabilités HIGH/CRITICAL dans l'image.
+![alt text](image-12.png)
 
 ### Tableau récapitulatif : Règle → Contrôle → Outil → Preuve
 
