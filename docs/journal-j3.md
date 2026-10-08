@@ -159,12 +159,11 @@ On peut ensuite voir que la CI se lance bien et que le job conftest pass mais pa
 
 ### Etape 5 : Ruleset — checks obligatoires
 
-Dans GitHub → Settings → Rules, on ajoute les deux status checks obligatoires :
+Dans la ruleset GitHub, on ajoute les deux status checks obligatoires :
 - **PSSI manifests (conftest)**
 - **PSSI images (Trivy)**
 
-<!-- Capture de la ruleset -->
-<!-- ![alt text](../images-j3/image-XX.png) -->
+![alt text](image-9.png)
 
 ### Etape 6 : PR non conforme (test du blocage)
 
