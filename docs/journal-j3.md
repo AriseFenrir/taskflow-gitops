@@ -12,8 +12,14 @@ On confirme que le nouveau setup est mis en place sur le cluster
 
 ### Etape 2 : Test de charge baseline (étalon)
 
-<!-- Résultats de ./scripts/charge.sh http://taskflow -->
-<!-- Noter : taux d'erreur, p95 -->
+On a lancer le script charge.sh pour effectuer le test de charge baseline.
+
+![alt text](image-2.png)
+
+Dans le resultat on peut observer : 
+0.00% d'erreur, (seuil < 2%)
+p95 = 10.35ms (seuil < 250ms)
+730 requêtes, 100% en statut 200
 
 ### Etape 3 : PR feat/analyse-auto
 
